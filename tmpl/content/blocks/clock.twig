@@ -1,0 +1,12 @@
+<div class="clock">
+    <div id="clock"></div>
+    <div class="day">{{ day }}</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        clock = $('#clock').FlipClock({
+            clockFace: 'TwentyFourHourClock',
+            showSeconds: false
+        });
+    });
+</script>

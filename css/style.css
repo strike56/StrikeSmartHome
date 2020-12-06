@@ -1,0 +1,80 @@
+html {
+	padding: 0;
+	margin: 0;
+	font-size: 1em;
+	font-weight: 300;
+	line-height: 1em;
+	color: white;
+	background: url(../img/bg.png) #252525 no-repeat center;
+	background-size: cover;
+	font-family: "Helvetica Neue", Helvetica, sans-serif; }
+
+body {
+	padding: 0;
+	margin: 0;
+	height: 100vh; }
+
+header {
+	display: block;
+	background-color: #1d1d1d;
+	vertical-align: middle;
+	position: sticky;
+	padding: .5em .5em;
+	top: 0; }
+
+	header .status {
+		display: inline-block;
+		vertical-align: middle;
+		width: .8em;
+		height: .8em;
+		border-radius: 50%;
+		background: red; }
+
+		header .status.online {
+			background: green; }
+
+	header .btn {
+		display: inline-block;
+		vertical-align: middle;
+		width: 2.5em;
+		height: 2.5em;
+		margin-right: .5em;
+		border: 1px solid #1f1f1f;
+		border-radius: 50%;
+		box-shadow: 0 1px 3px rgba(0,0,0,.2);
+		background-color: #333;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 80%;
+		text-align: center;
+		text-decoration: none; }
+
+		header .btn.home {
+			background-image: url(../img/control_building_empty.svg); }
+		header .btn.msg {
+			background-image: url(../img/message_attention.svg); }
+		header .btn.stat {
+			background-image: url(../img/time_statistic.svg); }
+		header .btn.media {
+			background-image: url(../img/it_television.svg); }
+
+.cols {
+	display: flex; }
+	.cols > * {
+		flex: 1; }
+@media (max-width: 800px) {
+	.cols {
+		display: block; }
+}
+
+.clock {
+	text-align: center;
+	padding: 1em 0; }
+
+	.clock #clock {
+		width: auto;
+		display: inline-block;
+		margin: 0; }
+
+	.clock .day {
+		padding-top: .5em; }
