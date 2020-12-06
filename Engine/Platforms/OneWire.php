@@ -4,11 +4,11 @@
 
     use \Workerman\Worker;
     use \Workerman\Timer;
-    use \Engine\Server;
 
     class OneWire {
 
         protected static Worker $server;
+        protected static object $client;
 
         public static function init()
         {
@@ -18,6 +18,7 @@
 
         public static function start()
         {
+            self::$client = new \Engine\Api\OneWire();
             Timer::add(1, function() {
                 OneWire::tick();
             });
@@ -31,7 +32,7 @@
 
         public static function tick()
         {
-            $data = Server::$kernel->api->ow->load_alarm();
+            $data = self::$client->load_alarm();
             foreach($data as $uid) {
                 static::onMessage($uid);
             }

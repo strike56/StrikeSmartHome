@@ -17,8 +17,8 @@
         {
             Timer::init();
             WebSocket::init();
-//            Mqtt::init();
-//            OneWire::init();
+            Mqtt::init();
+            OneWire::init();
         }
 
         public static function run() {

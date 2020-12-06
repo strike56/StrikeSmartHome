@@ -4,6 +4,7 @@
 
     use Engine\Config;
     use OWNet;
+    use Exception;
 
 	class OneWire {
 
@@ -17,7 +18,6 @@
 #########################################
 		
 		function __construct() {
-		
 			include_once dirname(__FILE__)."/ownet/ownet.php";
 			$this->server = new OWNet(Config::get('OneWire', 'url'));
 		}
