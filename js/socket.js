@@ -12,7 +12,7 @@
 
 			connect: function() {
 				if (!socket.ws) {
-					socket.ws = new ReconnectingWebSocket( 'wss://' + socket.url + '/' );
+					socket.ws = new ReconnectingWebSocket( 'ws://' + socket.url + '/' );
 					socket.ws.onopen = socket.open;
 					socket.ws.onclose = socket.close;
 					socket.ws.onmessage = socket.receive;

@@ -10,8 +10,8 @@
 
         public static function init()
         {
-            self::$server = new Worker(Config::get('WebSocket', 'url'), ['ssl' => Config::get('WebSocket', 'ssl')]);
-            self::$server->transport = 'ssl';
+            self::$server = new Worker(Config::get('WebSocket', 'url')/*, ['ssl' => Config::get('WebSocket', 'ssl')]*/);
+            // self::$server->transport = 'ssl';
             self::$server->onConnect = [WebSocket::class, 'onConnect'];
             self::$server->onMessage = [WebSocket::class, 'onMessage'];
             self::$server->onClose = [WebSocket::class, 'onClose'];
