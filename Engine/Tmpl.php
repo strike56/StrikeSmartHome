@@ -34,7 +34,12 @@
                     }
                 });
                 static::$client->addFunction($function);
-                static::$client->addGlobal('BASE_URL', BASE_URL);
+                foreach([
+                    'BASE_URL' => BASE_URL,
+                    'SERVER_ADDR' => $_SERVER['SERVER_ADDR'],
+                ] as $key => $value) {
+                    static::$client->addGlobal($key, $value);
+                }
             }
             return static::$client;
         }
