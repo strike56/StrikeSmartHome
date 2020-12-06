@@ -5,7 +5,7 @@
     include __DIR__.'/../vendor/autoload.php';
 
     use \Workerman\Worker;
-    use \Engine\Platforms\Mqtt; 
+    use \Engine\Platforms\Mqtt;
     use \Engine\Platforms\OneWire;
     use \Engine\Platforms\WebSocket;
     use \Engine\Platforms\Timer;
