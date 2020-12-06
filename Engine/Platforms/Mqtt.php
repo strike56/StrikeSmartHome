@@ -14,6 +14,7 @@
         public static function init()
         {
             self::$server = new Worker();
+            self::$server->name = 'Mqtt';
             self::$server->onWorkerStart = [ self::class, 'start' ];
         }
 

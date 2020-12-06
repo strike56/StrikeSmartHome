@@ -13,6 +13,7 @@
         public static function init()
         {
             self::$server = new Worker();
+            self::$server->name = 'OneWire';
             self::$server->onWorkerStart = [ self::class, 'start' ];
         }
 
