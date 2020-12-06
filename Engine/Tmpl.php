@@ -36,7 +36,7 @@
                 static::$client->addFunction($function);
                 foreach([
                     'BASE_URL' => BASE_URL,
-                    'SERVER_ADDR' => $_SERVER['SERVER_ADDR'],
+                    'REMOTE_ADDR' => $_SERVER['REMOTE_ADDR'],
                 ] as $key => $value) {
                     static::$client->addGlobal($key, $value);
                 }
