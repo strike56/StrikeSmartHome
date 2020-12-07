@@ -10,10 +10,10 @@
 
 #########################################
 
-		private $dir = '';
-		public  $attempts = 5;
-		public  $alarm = [];
-		public $server;
+		private string $dir = '';
+		public int $attempts = 5;
+		public array $alarm = [];
+		public OWNet $server;
 		
 #########################################
 		
@@ -33,11 +33,9 @@
 			try {
 				$data = $this->server->read($fName, false);
 				if (!isset($data) || $data === false) {
-//					file_put_contents(PUBLIC_DIR."/logs/ow_error_log", date("d.m.Y H:i:s")."[1] - get:".$fName."\n", FILE_APPEND);
 					return false;
 				}
 			} catch (Exception $e) {
-//				file_put_contents(PUBLIC_DIR."/logs/ow_error_log", date("d.m.Y H:i:s")."[2] - get:".$fName."\n", FILE_APPEND);
 				return false;
 			}
 			
@@ -47,7 +45,8 @@
 		
 #########################################
 		
-		public function set($uid, $path, $value) {
+		public function set($uid, $path, $value): bool
+        {
 			if (!$this->server) return false;
 			
 			$deviceDir = $this->dir."/".strtoupper($uid);
@@ -56,21 +55,19 @@
 			try {
 				$stat = $this->server->set($fName, $value);
 				if (!isset($stat) || !$stat) { 
-//					file_put_contents(PUBLIC_DIR."/logs/ow_error_log", date("d.m.Y H:i:s")."[1] - set:".$fName."\n", FILE_APPEND);
 					return false;
 				}
 			} catch (Exception $e) {
-//				file_put_contents(PUBLIC_DIR."/logs/ow_error_log", date("d.m.Y H:i:s")."[2] - set:".$fName."\n", FILE_APPEND);
 				return false;
 			}
-			
 			return true;
 		}
 		
 #########################################
 
-		public function get_temp($uid) {
-			
+		public function getTemp($uid): bool|float {
+
+		    $data = false;
 			$match = false;
 			for ($i = 1; $i <= $this->attempts; $i++) {
 				
@@ -84,7 +81,6 @@
 					continue;
 				}
 				$match = true;
-				
 				break;
 			}
 			
@@ -92,14 +88,12 @@
 				$this->error("get", $uid."/temperature");
 				return false;
 			}
-			$val = round($data, 1);
-
-			return $val;
+			return  $data ? round($data, 1) : false;
 		}
 		
 #########################################
 
-		public function set_key($uid, $value = "1", $channel = "A") {
+		public function setKey($uid, $value = "1", $channel = "A") {
 			
 			$match = false;
 			for ($i = 1; $i <= $this->attempts; $i++) {
@@ -123,8 +117,9 @@
 		
 #########################################
 
-		public function get_key($uid, $channel = "A") {
-			
+		public function getKey($uid, $channel = "A") {
+
+            $data = null;
 			$match = false;
 			for ($i = 1; $i <= $this->attempts; $i++) {
 				
@@ -134,7 +129,6 @@
 					continue;
 				}
 				$match = true;
-				
 				break;
 			}
 			
@@ -143,24 +137,22 @@
 				return false;
 			}
 			
-			$val = $data;
-			return $val;
+			return $data;
 		}
 		
 #########################################
 
-		public function get_latch($uid, $channel = "A") {
-			
+		public function getLatch($uid, $channel = "A") {
+
+		    $data = null;
 			$match = false;
 			for ($i = 1; $i <= $this->attempts; $i++) {
-				
 				$data = $this->get($uid, "/latch.".$channel);
 				if (!isset($data) || $data === false) {
 					usleep(rand(1, 1000000));
 					continue;
 				}
 				$match = true;
-				
 				break;
 			}
 			
@@ -169,17 +161,16 @@
 				return false;
 			}
 			
-			// Clear
 			if ($data) $this->set($uid, "/latch.".$channel, 0);
 			
-			$val = $data; 
-			return $val;
+			return $data;
 		}
 		
 #########################################
 
-		public function get_sensed($uid, $channel = "A", $cached = true) {
-			
+		public function getSensed($uid, $channel = "A", $cached = true) {
+
+		    $data = null;
 			$match = false;
 			for ($i = 1; $i <= $this->attempts; $i++) {
 				
@@ -198,20 +189,19 @@
 				return false;
 			}
 			
-			$val = $data; 
-			return $val;
+			return $data;
 		}
 		
 #########################################
 
-		public function load_alarm() {
+		public function loadAlarm() {
 			$dir = $this->dir."/alarm";
 			$itm = $this->server->get($dir, OWNET_MSG_DIR, false);
 			$items = array();
 			if (isset($itm) && $itm) {
 				$itm = explode(",", $itm);
 				foreach($itm as $val) {
-					$val = preg_replace("#^".$dir."/#", "", $val);
+					$val = preg_replace('/^'.preg_quote($dir."/", '/').'/', '', $val);
 					$items[$val] = $val;
 				}
 			}
@@ -221,40 +211,13 @@
 		
 #########################################
 				
-		public function is_alarm($uid) {
-			$stat = isset($this->alarm[$uid]) ? true : false;
-			return $stat;
+		public function isAlarm($uid) {
+			return isset($this->alarm[$uid]);
 		}
 		
 #########################################
 				
 		public function error($type, $file, $value = false) {
-/*
-		    $s = "SELECT * FROM errors
-                    WHERE type = '$type'
-                    AND file = '".$this->kernel->db->escape($file)."'
-                    AND value ".($value === false ? " IS NULL " : " = '".$this->kernel->db->escape($value)."'");
-            $r = $this->kernel->db->query($s);
-            if (!$r) return false;
-            if ($rr = $r->getRow()) {
-                $fld = array(
-                    "dateLast"	=> date("Y-m-d H:i:s"),
-                    "quantity"  => $rr["quantity"] + 1,
-                );
-                $ID = $rr["ID"];
-            } else {
-                $fld = array(
-                    "dateAdd" => date("Y-m-d H:i:s"),
-                    "dateLast" => date("Y-m-d H:i:s"),
-                    "type" => $type,
-                    "file" => $this->kernel->db->escape($file),
-                    "value" => $value === false ? false : $this->kernel->db->escape($value),
-                    "quantity" => 1,
-                );
-                $ID = false;
-            }
-			$this->kernel->db->make("errors", $ID, $fld);
-*/
 		}
 		
 #########################################
