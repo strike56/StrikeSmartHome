@@ -3,7 +3,7 @@
     namespace Engine\Traits;
 
     use \Engine\Core;
-    use \Engine\Store;
+    use \Engine\Modules\Store;
 
     trait OnOff {
 

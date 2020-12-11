@@ -3,6 +3,7 @@
     namespace Engine;
 
     use Exception;
+    use Engine\Modules\Tmpl;
 
     define('BASE_URL', '/home');
     define('BASE_URL_REGX', preg_quote(BASE_URL, '/'));

@@ -1,6 +1,6 @@
 <?php
 
-    include __DIR__ . '/Engine/Autoload.php';
+    include __DIR__ . '/vendor/autoload.php';
 
     use \Engine\Server;
 

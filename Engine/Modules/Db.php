@@ -1,9 +1,10 @@
 <?php
 
-    namespace Engine;
+    namespace Engine\Modules;
 
     use Exception;
     use \Doctrine\DBAL\DriverManager;
+    use \Engine\Config;
 
     class Db {
 

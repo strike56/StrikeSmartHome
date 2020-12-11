@@ -1,6 +1,6 @@
 <?php
 
-    namespace Engine;
+    namespace Engine\Modules;
 
     use \Twig\Loader\FilesystemLoader;
     use \Twig\Environment;
@@ -15,7 +15,7 @@
         {
             if (empty(static::$client)) {
                 $loader = new FilesystemLoader([
-                    __DIR__.'/../tmpl',
+                    __DIR__.'/../../tmpl',
                 ], );
                 static::$client = new Environment($loader);
 

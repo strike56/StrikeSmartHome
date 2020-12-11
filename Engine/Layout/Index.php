@@ -2,7 +2,7 @@
 
     namespace Engine\Layout;
 
-    use Engine\Tmpl;
+    use Engine\Modules\Tmpl;
     use Exception;
 
     class Index {

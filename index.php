@@ -1,6 +1,6 @@
 <?php
 
-    include_once __DIR__.'/Engine/Autoload.php';
+    include_once __DIR__.'/vendor/autoload.php';
 
     use Engine\Page;
 

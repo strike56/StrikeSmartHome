@@ -2,7 +2,7 @@
 
     namespace Engine\Content\Blocks;
 
-    use Engine\Tmpl;
+    use Engine\Modules\Tmpl;
     use Exception;
 
     class Clock {

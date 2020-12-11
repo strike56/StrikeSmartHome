@@ -1,8 +1,9 @@
 <?php
 
-    namespace Engine;
+    namespace Engine\Modules;
 
     use Symfony\Component\Cache\Adapter\RedisAdapter;
+    use Engine\Config;
     use Exception;
 
     class Cache {
