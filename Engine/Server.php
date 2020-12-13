@@ -15,10 +15,10 @@
 
         public static function init()
         {
-            Timer::init();
+            //Timer::init();
             WebSocket::init();
-            Mqtt::init();
-            OneWire::init();
+            //Mqtt::init();
+            //OneWire::init();
         }
 
         public static function run() {

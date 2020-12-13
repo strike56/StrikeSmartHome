@@ -3,7 +3,7 @@
     namespace Engine\Traits;
 
     use Engine\Core;
-    use Engine\Modules\Store;
+    use Engine\Library\Store;
 
     trait Brightness {
 

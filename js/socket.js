@@ -71,7 +71,7 @@
 			open: function() {
                 connector.status = true;
 				$('header .status').addClass('online');
-				connector.send( 'PING' );
+				connector.send( 'Ping' );
 				if (typeof actions["onopen"] == 'function')
 					actions["onopen"]();
 			},
@@ -84,7 +84,7 @@
 			},
 				
 			pong: function() {
-				connector.send('PING');
+				connector.send('Ping');
 			},
 			
 			connect: function( url ) {

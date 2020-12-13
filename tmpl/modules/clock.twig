@@ -1,0 +1,23 @@
+<div class="clock">
+    <div class="watch"></div>
+    <div class="day"></div>
+</div>
+<script type="text/javascript">
+    home.push('Clock', {
+        'action': 'Clock',
+        'add': function() {
+            let obj = $('#modules .clock').clone();
+            obj.attr('id', this.id);
+            return obj;
+        },
+        'init': function() {
+            $('#'+this.id+' .watch').FlipClock({
+                clockFace: 'TwentyFourHourClock',
+                showSeconds: false
+            });
+        },
+        'update': function(data) {
+            $('#' + this.id + ' .day').text(data.day);
+        }
+    });
+</script>

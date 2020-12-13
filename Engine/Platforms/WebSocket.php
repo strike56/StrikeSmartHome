@@ -10,8 +10,7 @@
 
         public static function init()
         {
-            self::$server = new Worker(Config::get('WebSocket', 'url')/*, ['ssl' => Config::get('WebSocket', 'ssl')]*/);
-            // self::$server->transport = 'ssl';
+            self::$server = new Worker(Config::get('WebSocket', 'url'));
             self::$server->name = 'WebSocket';
             self::$server->onConnect = [WebSocket::class, 'onConnect'];
             self::$server->onMessage = [WebSocket::class, 'onMessage'];
@@ -26,6 +25,10 @@
         public static function onMessage( $connection, $data )
         {
             print 'websocket client MESSAGE: '.json_encode($data).PHP_EOL;
+            $source = new \Engine\Sources\WebSocket();
+            $source->setConnection( $connection );
+            $source->receive( $data );
+
         }
 
         public static function onClose( $connection )

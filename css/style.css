@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300|Roboto+Condensed:300,300i|Roboto:300,300i,400,500,500i&display=swap&subset=cyrillic,latin-ext');
 html {
 	padding: 0;
 	margin: 0;
 	font-size: 1em;
 	font-weight: 300;
-	line-height: 1em;
+	line-height: 1.3em;
 	color: white;
 	background: url(../img/bg.png) #252525 no-repeat center;
 	background-size: cover;
-	font-family: "Helvetica Neue", Helvetica, sans-serif; }
+	/*font-family: "Helvetica Neue", Helvetica, sans-serif;*/
+	font-family: Oswald,"Franklin Gothic Book","Segoe UI Semilight",-apple-system,"Helvetica Neue",Arial,sans-serif;}
 
 body {
 	padding: 0;
@@ -61,20 +63,71 @@ header {
 .cols {
 	display: flex; }
 	.cols > * {
+		padding: .2em .5em;
 		flex: 1; }
 @media (max-width: 800px) {
 	.cols {
 		display: block; }
 }
 
+#modules {
+	display: none;
+}
+
 .clock {
 	text-align: center;
 	padding: 1em 0; }
 
-	.clock #clock {
+	.clock .watch {
 		width: auto;
 		display: inline-block;
 		margin: 0; }
 
 	.clock .day {
 		padding-top: .5em; }
+
+.weather-forecast {}
+
+	.weather-forecast .weather {
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		min-height: 12em; }
+
+		.weather-forecast .weather .humi {
+			text-align: right; }
+		.weather-forecast .weather .wind {
+			text-align: right; }
+		.weather-forecast .weather .temp {
+			font-weight: bold;
+			text-shadow:
+				-1px -1px 0 #000,
+				1px -1px 0 #000,
+				-1px 1px 0 #000,
+				1px 1px 0 #000;
+			font-size: 3em;
+			line-height: 3em; }
+			.weather-forecast .weather .temp a {
+				color: white;
+				text-decoration: none; }
+		.weather-forecast .weather .city {
+			font-weight: bold;
+			text-align: center; }
+		.weather-forecast .weather .cond {
+			text-align: center; }
+
+	.weather-forecast .forecast {
+		border-top: 1px dotted #808080;
+		margin-top: 1em;
+		padding-top: 1em;
+		text-align: center;
+		display: flex; }
+
+		.weather-forecast .forecast > * {
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			flex: 1; }
+
+			.weather-forecast .forecast .weekday {
+				margin-bottom: 3.5em; }

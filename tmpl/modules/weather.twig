@@ -1,0 +1,54 @@
+<div class="weather-forecast">
+    <div class="weather">
+        <div class="humi"></div>
+        <div class="wind"></div>
+        <div class="temp"><a href="#"></a></div>
+        <div class="city"></div>
+        <div class="cond"></div>
+    </div>
+    <div class="forecast">
+        <div class="day">
+            <div class="weekday"></div>
+            <div class="temp"></div>
+        </div>
+        <div class="day">
+            <div class="weekday"></div>
+            <div class="temp"></div>
+        </div>
+        <div class="day">
+            <div class="weekday"></div>
+            <div class="temp"></div>
+        </div>
+        <div class="day">
+            <div class="weekday"></div>
+            <div class="temp"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    home.push('Weather', {
+        'action': 'Weather',
+        'add': function() {
+            let obj = $('#modules .weather-forecast').clone();
+            obj.attr('id', this.id);
+            return obj;
+        },
+        'init': function() {
+        },
+        'update': function(data) {
+            $('#'+this.id+' .weather').css('background-image', 'url('+data['image']+')');
+            $('#'+this.id+' .weather .humi').text(data['humi']);
+            $('#'+this.id+' .weather .wind').text(data['wind']);
+            $('#'+this.id+' .weather .temp a').text(data['temp']);
+            $('#'+this.id+' .weather .city').text(data['city']);
+            $('#'+this.id+' .weather .cond').text(data['cond']);
+            let days = $('#'+this.id+' .forecast .day');
+            $(data['forecast']).each(function(k, v) {
+                let obj = days.eq(k);
+                obj.css('background-image', 'url('+v['image']+')');
+                obj.find('.weekday').text(v['weekday']);
+                obj.find('.temp').text(v['temp']);
+            });
+        }
+    });
+</script>

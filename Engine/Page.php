@@ -3,7 +3,7 @@
     namespace Engine;
 
     use Exception;
-    use Engine\Modules\Tmpl;
+    use Engine\Library\Tmpl;
 
     define('BASE_URL', '/home');
     define('BASE_URL_REGX', preg_quote(BASE_URL, '/'));
@@ -46,8 +46,9 @@
             try {
                 $map = static::getMapClass($url);
                 if (!$map || empty($map['action'])) return null;
-                [$className, $function] = explode('::', $map['action']);
-                if (!$function) $function = 'execute';
+                $expParams = explode('::', $map['action']);
+                $className = $expParams[0];
+                $function = !empty($expParams[1]) ? $expParams[1] : 'execute';
 
                 if (class_exists($className) && method_exists($className, $function)) {
                     $content = $className::$function();
