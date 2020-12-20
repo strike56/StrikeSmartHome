@@ -9,18 +9,22 @@
     <div class="forecast">
         <div class="day">
             <div class="weekday"></div>
+            <div class="img"></div>
             <div class="temp"></div>
         </div>
         <div class="day">
             <div class="weekday"></div>
+            <div class="img"></div>
             <div class="temp"></div>
         </div>
         <div class="day">
             <div class="weekday"></div>
+            <div class="img"></div>
             <div class="temp"></div>
         </div>
         <div class="day">
             <div class="weekday"></div>
+            <div class="img"></div>
             <div class="temp"></div>
         </div>
     </div>
@@ -45,7 +49,7 @@
             let days = $('#'+this.id+' .forecast .day');
             $(data['forecast']).each(function(k, v) {
                 let obj = days.eq(k);
-                obj.css('background-image', 'url('+v['image']+')');
+                obj.find('.img').css('background-image', 'url('+v['image']+')');
                 obj.find('.weekday').text(v['weekday']);
                 obj.find('.temp').text(v['temp']);
             });

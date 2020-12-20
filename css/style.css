@@ -6,7 +6,7 @@ html {
 	font-weight: 300;
 	line-height: 1.3em;
 	color: white;
-	background: url(../img/bg.png) #252525 no-repeat center;
+	background: url(../img/bg.png) #252525 repeat-y center;
 	background-size: cover;
 	/*font-family: "Helvetica Neue", Helvetica, sans-serif;*/
 	font-family: Oswald,"Franklin Gothic Book","Segoe UI Semilight",-apple-system,"Helvetica Neue",Arial,sans-serif;}
@@ -52,18 +52,18 @@ header {
 		text-decoration: none; }
 
 		header .btn.home {
-			background-image: url(../img/control_building_empty.svg); }
+			background-image: url(../img/icons/ws/control_building_empty.svg); }
 		header .btn.msg {
-			background-image: url(../img/message_attention.svg); }
+			background-image: url(../img/icons/ws/message_attention.svg); }
 		header .btn.stat {
-			background-image: url(../img/time_statistic.svg); }
+			background-image: url(../img/icons/ws/time_statistic.svg); }
 		header .btn.media {
-			background-image: url(../img/it_television.svg); }
+			background-image: url(../img/icons/ws/it_television.svg); }
 
 .cols {
 	display: flex; }
 	.cols > * {
-		padding: .2em .5em;
+		padding: 0 .5em;
 		flex: 1; }
 @media (max-width: 800px) {
 	.cols {
@@ -123,11 +123,88 @@ header {
 		text-align: center;
 		display: flex; }
 
-		.weather-forecast .forecast > * {
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: contain;
+		.weather-forecast .forecast > .day {
 			flex: 1; }
 
-			.weather-forecast .forecast .weekday {
-				margin-bottom: 3.5em; }
+			.weather-forecast .forecast .day .img {
+				height: 5em;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain; }
+
+@media (max-width: 800px) {
+	h1.title {
+		text-align: center; }
+}
+
+.index-floor {
+	padding: 0; }
+
+	.index-floor .index-floor-row {
+		display: flex;
+		font-size: 1.6em;
+		align-items: center;
+		padding: .1em 0; }
+
+		.index-floor .index-floor-row > a {
+			display: block;
+			text-decoration: none;
+			color: white;
+			flex: 1; }
+
+		.index-floor .index-floor-row .index-floor-row-status .temp {
+			display: inline-block;
+			color: white;
+			text-decoration: none;
+			vertical-align: middle;
+			font-size: .5em; }
+
+
+.icon:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: .2em;
+	width: 1.6em;
+	height: 1.6em;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain; }
+
+	.icon.living-room:before {
+		background-image: url(../img/icons/ws/scene_livingroom.svg); }
+	.icon.kitchen:before {
+		background-image: url(../img/icons/ws/scene_dinner.svg); }
+	.icon.corridor:before {
+		background-image: url(../img/icons/ws/scene_hall.svg); }
+	.icon.toilet:before {
+		background-image: url(../img/icons/ws/scene_toilet_alternat.svg); }
+	.icon.tambour:before {
+		background-image: url(../img/icons/ws/scene_corridor.svg); }
+	.icon.boiler-room:before {
+		background-image: url(../img/icons/ws/scene_stove.svg); }
+	.icon.garage:before {
+		background-image: url(../img/icons/ws/fts_garage.svg); }
+	.icon.bedroom:before {
+		background-image: url(../img/icons/ws/scene_sleeping.svg); }
+	.icon.children-room:before {
+		background-image: url(../img/icons/ws/scene_childs_room.svg); }
+	.icon.cabinet:before {
+		background-image: url(../img/icons/ws/scene_office.svg); }
+	.icon.bathroom:before {
+		background-image: url(../img/icons/ws/scene_bath.svg); }
+	.icon.wardrobe:before {
+		background-image: url(../img/icons/ws/scene_dressing_room.svg); }
+	.icon.front:before {
+		background-image: url(../img/icons/ws/control_building_outside.svg); }
+	.icon.move:before {
+		background-image: url(../img/icons/or/message_presence_active.png); }
+	.icon.heater:before {
+		background-image: url(../img/icons/or/sani_heating.png); }
+	.icon.light:before {
+		background-image: url(../img/icons/or/light_light.png); }
+
+.index-floor-row-status .icon:before {
+	margin-right: 0em;
+	width: 1.2em;
+	height: 1.2em; }
